@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/msinnema33/node-db4-project#readme",
   "devDependencies": {
-    "nodemon": "^2.0.2",
-    "knex-cleaner": "1.3.0"
+    "knex-cleaner": "^1.3.0",
+    "nodemon": "^2.0.2"
   },
   "dependencies": {
     "cors": "^2.8.5",
