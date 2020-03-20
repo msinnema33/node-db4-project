@@ -3,8 +3,6 @@ const router = express.Router();
 const projectModel = require('../../data/helpers/projectModel.js');
 const Tasks = require('../../data/helpers/tasksModel.js');
 
-const { checkProjectId, bodyValidation } = require('./validation-middleware.js');
-
 router.get('/', (req, res) => {
 
     projectModel.get()
@@ -17,7 +15,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:id/tasks', checkProjectId, (req, res) => {
+router.get('/:id/tasks', (req, res) => {
     const {id} = req.params
 
     Tasks.get(id)
@@ -27,7 +25,7 @@ router.get('/:id/tasks', checkProjectId, (req, res) => {
     .catch(err => res.status(500).json({ message: "Failed to get tasks from database", error: err}))
 })
 
-router.post('/', bodyValidation, (req, res) => {
+router.post('/', (req, res) => {
     console.log(req.body)
     
     projectModel.insert(req.body)
@@ -38,7 +36,7 @@ router.post('/', bodyValidation, (req, res) => {
     })
 })
 
-router.put('/:id', checkProjectId, (req, res) => {
+router.put('/:id', (req, res) => {
     projectModel.update(id, body)
     .then(() => {
         projectModel.get(id)
@@ -49,7 +47,7 @@ router.put('/:id', checkProjectId, (req, res) => {
     .catch(err => res.status(500).json({ message: err}))
 })
 
-router.delete('/:id', checkProjectId, (req, res) => {
+router.delete('/:id', (req, res) => {
     projectModel.remove(req.params.id)
     .then(() => res.status(204).end())
     .catch(err => {
