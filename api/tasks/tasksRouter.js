@@ -35,7 +35,7 @@ router.put('/:id', (req, res) => {
 
 router.delete(':id', (req, res) => {
     Tasks.remove(req.params.id)
-    .then(task => res.status(204).end())
+    .then(task => res.status(204).end()) //add task??
     .catch(err => {
         console.log(err)
         res.status(500).json({ message: 'Failed to delete task', error: err})
