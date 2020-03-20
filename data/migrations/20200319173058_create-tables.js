@@ -9,6 +9,7 @@ exports.up = function(knex) {
   .createTable('resources', tbl => {
       tbl.increments();
       tbl.string('resource_name', 128).notNullable().unique();
+      tbl.string('resource_desctiption', 255);
       tbl.integer('project_id').unsigned().notNullable().references('id')
       .inTable('projects')
       .onDelete("CASCADE")
